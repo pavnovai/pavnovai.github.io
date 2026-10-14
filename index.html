@@ -379,6 +379,31 @@ footer.pg,.site{border-color:var(--line)}
 .maphint b{color:var(--ink)}
 .maplist button.next{outline:3px solid var(--primary);outline-offset:2px}
 @media (max-width:760px){.maphint{display:none}}
+.sg-tile{display:inline-grid;place-items:center;width:3.4rem;height:3.4rem;font-size:1.7rem;border-radius:12px;background:color-mix(in srgb,var(--primary) 13%,var(--card));color:var(--primary)}.sg-tile .ico{margin:0}
+#scamApp{font-size:calc(18px*var(--sgf,1))}
+.sg-lead{color:var(--ink2);max-width:64ch}.gnote{font-size:.85em;color:var(--ink2)}
+.sg-sc{display:flex;flex-wrap:wrap;gap:8px}.sg-sc button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:8px 16px;font-weight:600;min-height:44px}.sg-sc button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sg-hd{display:flex;justify-content:space-between;gap:8px;font-size:.8em;color:var(--ink2);margin-bottom:6px;flex-wrap:wrap}
+.sg-bub{background:var(--paper);border:1px solid var(--line);border-radius:18px 18px 18px 4px;padding:14px 16px}
+.sg-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.sg-sub{font-weight:700;margin-bottom:6px}
+.sg-call{background:color-mix(in srgb,var(--primary) 9%,var(--card));border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center}
+.sg-call .sg-tr{text-align:left;margin-top:12px}.sg-call .sg-sm{opacity:.75;font-size:.85em}
+.sg-av{width:56px;height:56px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;background:var(--primary);color:var(--on-primary);font-size:1.6rem}.sg-av .ico{margin:0}
+.sg-vid{height:88px;border-radius:10px;margin:8px 0;display:grid;place-items:center;font-size:2.2rem;background:color-mix(in srgb,var(--primary) 16%,var(--paper));color:var(--primary)}.sg-vid .ico{margin:0}
+.sg-s{border-radius:6px;padding:1px 3px;text-decoration:underline dotted var(--ink2);text-underline-offset:4px}
+.sg-s[data-a]{cursor:pointer}.sg-s[data-a]:hover{background:color-mix(in srgb,var(--sun) 55%,transparent)}
+.sg-s.t{background:var(--sun);color:var(--on-sun);box-shadow:0 0 0 2px var(--ink);text-decoration:none}
+.sg-s.f{outline:2px dashed var(--bad);outline-offset:2px}.sg-s.f::after{content:"!";font-weight:800;color:var(--bad);margin-left:3px}
+.sg-hint{color:var(--ink2);margin:16px 0 8px}.sg-g{display:flex;gap:10px;align-items:center;font-weight:500;min-height:44px}.sg-g input{width:22px;height:22px;accent-color:var(--primary)}
+.sg-chip{display:inline-block;border:1px solid var(--line);background:color-mix(in srgb,var(--primary) 12%,var(--card));border-radius:99px;padding:2px 12px;font-size:.85em;font-weight:600;margin:2px 6px 2px 0}
+.sg-bar{display:grid;grid-template-columns:150px 1fr 52px;gap:10px;align-items:center;margin:8px 0}.sg-bar .t{height:20px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper)}.sg-bar .t i{display:block;height:100%;background:var(--primary)}
+@media (max-width:560px){.sg-bar{grid-template-columns:100px 1fr 46px}}
+.sg-hist{display:flex;gap:6px;align-items:flex-end;height:96px;margin:10px 0}.sg-hist div{flex:1;background:var(--primary);border-radius:6px 6px 0 0;min-height:4px;position:relative}.sg-hist span{position:absolute;top:-22px;left:0;right:0;text-align:center;font-size:.8em}
+.sg-fam{border:2px dashed var(--ink);border-radius:14px;padding:18px;background:var(--card)}.sg-fam .w{font-size:1.8em;font-weight:700;min-height:2.3em}
+.sg-tw{overflow-x:auto}.sg-tw table{border-collapse:collapse;width:100%;font-size:.92em}.sg-tw td,.sg-tw th{border-top:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+#scamApp .widget,#scamApp .rules{margin-top:18px}
+@media print{.site,footer.pg,#scamApp>*:not(.sg-pc){display:none!important}body{padding-left:0!important;background:#fff;color:#000}.sg-fam{border-color:#000;color:#000}}
 </style>
 </head>
 <body>
@@ -394,6 +419,7 @@ footer.pg,.site{border-color:var(--line)}
     <nav class="main" id="mainnav" aria-label="Hlavní navigace">
       <button class="nl" data-go="discover">Objevuj AI</button>
       <button class="nl" data-go="quiz">Kvíz</button>
+      <button class="nl" data-go="scam">Stopař podvodů</button>
       <button class="nl" data-go="teacher">Pro učitele</button>
       <button class="tool" id="motionBtn" aria-pressed="false" title="Vypne výrazné animace">Omezit animace</button>
       <button class="tool" id="themeBtn" aria-pressed="false"></button>
@@ -414,6 +440,8 @@ footer.pg,.site{border-color:var(--line)}
     </div>
     <div class="mapbox" id="mapbox"></div>
 
+    <section class="block" id="scamPromo" aria-labelledby="spH"><div class="widget" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><span class="sg-tile" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div style="flex:1 1 280px"><h3 id="spH" style="margin-bottom:.2em">Interaktivní hra: Stopař podvodů</h3><p style="margin:0">Trénink rozpoznávání podvodných zpráv, hovorů a reklam.</p></div><button class="cta" data-go="scam">Spustit hru</button></div></section>
+
     <section class="block" id="glossary" aria-labelledby="glh">
       <div class="sechead">
         <div><h2 id="glh">AI slovník</h2><p>Každý pojem: jednoduché vysvětlení, příklad a „více do hloubky“.</p></div>
@@ -430,6 +458,11 @@ footer.pg,.site{border-color:var(--line)}
   <div class="wrap" style="padding-top:34px;padding-bottom:60px">
     <div id="quizStage"></div>
   </div>
+</div>
+
+<!-- ================= HRA ================= -->
+<div class="view" id="view-scam" hidden>
+  <div class="wrap" style="padding-top:34px;padding-bottom:60px"><div id="scamApp"></div></div>
 </div>
 
 <!-- ================= PRO UČITELE ================= -->
@@ -1215,6 +1248,9 @@ function drawTeacher(){
 
 /* ---------- ikony (line icons) ---------- */
 const PATHS={
+shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
+phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
 cpu:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
 network:'<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.5l3 8M16 7.5l-3 8M8.5 6h7"/>',
 chat:'<path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/>',
@@ -1268,10 +1304,103 @@ themeBtn.onclick=()=>{const t=isDark()?"light":"dark";rootEl.dataset.theme=t;sto
 mq.addEventListener&&mq.addEventListener("change",syncTheme);
 syncTheme();
 
+/* ===== HRA: Stopař podvodů (obsah scénářů beze změny) ===== */
+(function(){
+const TR={spech:['Spěch','Tlak na rychlé rozhodnutí. Kdo spěchá, nechce, abyste si věc ověřili.'],taj:['Tajemství','„Nikomu to neříkejte.“ Izolace od rodiny je hlavní zbraň podvodníka.'],aut:['Falešná autorita','Banka, policie, známá tvář. Autoritu lze předstírat, i hlas a obraz.'],odm:['Příliš dobré','Zaručený výdělek nebo výhra, o kterou jste nesoutěžili.'],pen:['Neobvyklá platba','Hotovost kurýrovi, dárkové karty, kryptoměny, „bezpečný účet“. Pravé instituce takto neplatí.'],odk:['Cizí odkaz nebo přístup','Odkaz mimo oficiální web, kód z SMS, aplikace pro vzdálený přístup.']};
+const D=[
+{ch:'sms',from:'+420 7•• ••• 214',x:1,tr:['spech','odk'],msg:'Česká pošta: Váš balík nelze doručit. [[Doplaťte poštovné 29 Kč do 24 hodin]] na [[cp-dorucovani-balik.top/zasilka]], jinak bude vrácen odesílateli.',why:'Drobná částka uspává ostražitost a odkaz vede na cizí adresu.',hab:'Odkaz neotvírejte. Stav zásilky ověřte na webu pošty, který znáte.'},
+{ch:'call',nm:'Neznámé číslo',x:1,tr:['taj','pen','spech'],msg:'„Babi, to jsem já, Honzík. Měl jsem nehodu. [[Nikomu to prosím neříkej, rodičům ne.]] Mluvím z cizího telefonu, můj nefunguje. [[Dnes přijde kurýr, dej mu 40 000 korun v hotovosti.]]“',why:'Hlas lze uměle namluvit z pár vteřin záznamu. Znít jako vnuk nic nedokazuje.',hab:'Zavěste a zavolejte vnukovi na uložené číslo. Ověřte se rodinným heslem.'},
+{ch:'sms',from:'Vaše banka',x:0,msg:'Platba kartou 450,00 Kč u Albert Brno proběhla. Zůstatek 12 380 Kč. Pokud jste platbu neprovedli, zavolejte na číslo na zadní straně karty.',why:'Zpráva jen informuje, nemá odkaz ani spěch a odkazuje na číslo, které už máte.',hab:'V pořádku. Podezírat všechno je také past, protože pak přehlédnete důležité upozornění.'},
+{ch:'ad',from:'Sociální síť · sponzorováno',x:1,tr:['odm','aut','spech'],msg:'Známá televizní moderátorka: [[„Každý Čech může vydělat 90 000 Kč měsíčně.“]] Investice jen 5 000 Kč. [[Nabídka platí jen pro prvních 50 lidí.]] Vyplňte telefon a zavolá vám osobní poradce.',why:'Zaručený vysoký výdělek neexistuje. Tvář a hlas slavného člověka lze podvrhnout (deepfake).',hab:'Nevyplňujte nic. Investice ověřte na seznamu licencovaných subjektů ČNB.'},
+{ch:'mail',from:'ordinace@mudr-novak-brno.example',sub:'Připomenutí termínu',x:0,msg:'Dobrý den, připomínáme Váš termín v ordinaci MUDr. Nováka zítra v 9:30. Pokud nemůžete přijít, zavolejte nám na číslo uvedené na Vaší kartičce objednání. Děkujeme.',why:'Čekáte ji, týká se vaší návštěvy a nechce peníze ani údaje.',hab:'V pořádku. Při pochybnostech volejte na číslo, které máte sami.'},
+{ch:'call',nm:'„Bezpečnostní oddělení banky“',x:1,tr:['aut','odk','spech'],msg:'„Na vašem účtu vidíme [[podezřelý převod]]. Abychom peníze zachránili, [[nainstalujte aplikaci pro vzdálenou pomoc]] a [[nadiktujte mi kód z SMS]]. [[Nezavěšujte, každá minuta se počítá.]]“',why:'Banka nikdy nežádá vzdálený přístup ani kód z SMS. „Nezavěšujte“ brání ověření.',hab:'Zavěste. Sami zavolejte bance na číslo z karty a chvíli počkejte, aby se linka uvolnila.'},
+{ch:'mail',from:'podpora@seznam-cz.help',sub:'Vaše heslo dnes vyprší!',x:1,tr:['spech','odk','aut'],msg:'Vážený uživateli, [[vaše heslo vyprší dnes ve 23:59.]] [[Přihlaste se zde a potvrďte heslo: seznam-cz.help/overeni]]. Jinak bude schránka smazána.',why:'Neznámá doména, oslovení „vážený uživatel“ a výhrůžka smazáním. Služby nechtějí heslo e-mailem.',hab:'Neklikejte. Přihlaste se přímo na web, který znáte, a zkontrolujte upozornění tam.'},
+{ch:'call',nm:'„Policie ČR“',x:1,tr:['aut','pen','taj'],msg:'„Váš syn způsobil nehodu, [[je zadržen a potřebuje kauci 150 000 Kč]]. [[Nikomu nevolejte, mohli bychom ohrozit vyšetřování.]] Pošlete peníze přes kurýra.“',why:'Policie nevybírá kauci od rodin přes kurýra ani nezakazuje volat příbuzným.',hab:'Zavěste a zavolejte synovi, nebo na linku 158 z vlastního telefonu.'},
+{ch:'sms',from:'+420 6•• ••• 088 (nové číslo)',x:1,tr:['pen','spech'],msg:'Ahoj mami, mám nové číslo, ten starý telefon se mi rozbil. [[Můžeš mi prosím hned zaplatit fakturu 18 500 Kč?]] [[Je to naléhavé, pošlu ti číslo účtu.]] Vrátím ti to zítra.',why:'Klasika „mami, mám nové číslo“. Prosba o peníze hned v první zprávě je varování.',hab:'Zavolejte na staré číslo dítěte. Nikam neplaťte, dokud hlas neověříte.'},
+{ch:'sms',from:'Operátor',x:0,msg:'Vyúčtování za září je k dispozici v aplikaci Moje služby. Splatnost 28. 10. Platit nemusíte, máte nastavenou inkasní platbu.',why:'Žádný odkaz, nic nežádá, platba už je domluvená.',hab:'V pořádku. Nic klikat ani platit není potřeba.'},
+{ch:'call',nm:'Vnučka Anička (uložený kontakt)',x:0,msg:'„Ahoj babi, jen volám, jak se máš. V neděli přijedu na oběd, máš chuť na řízek? Tak se měj, pusu!“',why:'Volá uložené číslo, nic nechce, nespěchá. Žádný z varovných znaků tu není.',hab:'V pořádku. Jakmile by se rozhovor stočil k penězům, ověřte ji rodinným heslem.'},
+{ch:'ad',from:'Vyskakovací okno',x:1,tr:['odm','odk'],msg:'Gratulujeme! [[Jste 1 000 000. návštěvník a vyhráváte iPhone 16.]] [[Klikněte a doplaťte jen poštovné 99 Kč kartou.]]',why:'Do soutěže jste se nepřihlásili a „poštovné“ slouží ke zjištění čísla karty.',hab:'Okno zavřete. Údaje o kartě nezadávejte.'},
+{ch:'sms',from:'Martin (WhatsApp)',x:1,tr:['pen','taj'],msg:'Zlato, jsem na ropné plošině a nemám přístup k účtu. [[Potřebuju 2 000 € na letenku domů, pošli je na tento účet.]] [[Zatím to nikomu neříkej, rodina by to nepochopila.]]',why:'Romantický podvod: známost jen online, výmluva, že nemůže k penězům, tajnost.',hab:'Online známosti peníze neposílejte. Poraďte se s důvěrníkem a požádejte o videohovor.'},
+{ch:'mail',from:'obec@mesto-hradec.example',sub:'Změna svozu bioodpadu',x:0,msg:'Upozorňujeme občany, že svoz bioodpadu se tento týden posouvá z úterý na čtvrtek 21. 10. Aktuální harmonogram najdete na úřední desce.',why:'Čistě informativní zpráva. Nechce data ani peníze.',hab:'V pořádku. Podstatné je, že nemá odkaz ani spěch.'}];
+
+const LV=["Určitě ne","Spíše ne","Nevím","Spíše ano","Určitě ano"];
+const root=document.getElementById("scamApp");
+const G={v:"home",q:[],i:0,ans:[],sel:new Set(),guess:false,shown:false,pre:null,post:null,tab:"ucit",fs:1,foc:null,pw:""};
+let H=[];try{H=JSON.parse(store.get("ai-scam-hist")||"[]")}catch(e){}
+const seg=m=>m.split(/(\[\[.*?\]\])/).filter(Boolean).map(t=>t.startsWith("[[")?[t.slice(2,-2),1]:[t,0]);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function start(n){const sc=D.filter(d=>d.x),rl=D.filter(d=>!d.x);
+  G.q=n>=D.length?shuffle(D):shuffle([...shuffle(sc).slice(0,n-3),...shuffle(rl).slice(0,3)]);
+  Object.assign(G,{v:"q",i:0,ans:[],sel:new Set(),guess:false,shown:false,post:null});render();window.scrollTo(0,0)}
+function dec(v){const d=G.q[G.i];let hit=0,fl=0,fake=0;seg(d.msg).forEach(([t,f],j)=>{if(f)fl++;if(G.sel.has(j)){f?hit++:fake++}});
+  G.ans[G.i]={ok:v===!!d.x,guess:G.guess,hit,fl,fake};G.shown=true;render();const e=$("#sgv");e&&e.scrollIntoView({block:"nearest"})}
+function nx(){G.sel=new Set();G.guess=false;G.shown=false;if(G.i<G.q.length-1)G.i++;else{fin();G.v="res"}render();window.scrollTo(0,0)}
+function fin(){const a=G.ans,n=a.length,sure=a.filter(x=>!x.guess);H.push({d:Date.now(),n,ok:a.filter(x=>x.ok).length,sn:sure.length,so:sure.filter(x=>x.ok).length,pre:G.pre});H=H.slice(-8);store.set("ai-scam-hist",JSON.stringify(H))}
+const scale=k=>`<div class="sg-sc" role="group" aria-label="Vaše jistota">${LV.map((l,i)=>`<button type="button" data-a="sc" data-k="${k}" data-l="${i+1}" aria-pressed="${G[k]===i+1}">${l}</button>`).join("")}</div>`;
+const bar=(l,p,w)=>`<div class="sg-bar"><span>${l}</span><div class="t"><i style="width:${p}%"></i></div><b>${p} %</b></div>`;
+function frame(d,sh){
+  const body=seg(d.msg).map(([t,f],j)=>{const on=G.sel.has(j);return `<span class="sg-s${f&&sh?" f":""}${on?" t":""}" data-j="${j}" ${sh?"":`data-a="tg" role="button" tabindex="0" aria-pressed="${on}"`}>${t}${on?'<span class="sr"> (označeno)</span>':""}${f&&sh?'<span class="sr"> (varovné místo)</span>':""}</span>`}).join(" ");
+  if(d.ch==="call")return `<div class="sg-call"><div class="sg-av">${svgI("user")}</div><b>${d.nm}</b><div class="sg-sm">${svgI("phone")}příchozí hovor · přepis</div><div class="sg-tr">${body}</div></div>`;
+  const hd=`<div class="sg-hd"><span>${d.from}</span><span>${d.ch==="sms"?"SMS · dnes":d.ch==="mail"?"E-mail":""}</span></div>`;
+  if(d.ch==="mail")return `<div class="sg-card">${hd}<div class="sg-sub">${d.sub}</div>${body}</div>`;
+  if(d.ch==="ad")return `<div class="sg-card">${hd}<div class="sg-vid">${svgI("play")}</div>${body}</div>`;
+  return `${hd}<div class="sg-bub">${body}</div>`}
+function home(){const L=H[H.length-1];
+  return `<h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Stopař podvodů</h1><p class="sg-lead">Naučte se poznat podvod dřív, než vás zaskočí. Krátké ukázky zpráv, hovorů, e-mailů a reklam: označíte podezřelá místa, rozhodnete a hned se dozvíte proč. Cílem není perfektní odhad, ale tři návyky, které fungují i na dokonalý podvod.</p>
+  <div class="widget"><h3>Jak moc si věříte?</h3><p>Že poznáte podvodnou zprávu, hovor nebo falešné video?</p>${scale("pre")}</div>
+  <div class="topics" style="margin:22px 0"><button type="button" data-a="start" data-n="8"><span class="em">${svgI("clock")}</span><b>Rychlý trénink</b><small>8 ukázek, asi 5 minut</small></button><button type="button" data-a="start" data-n="${D.length}"><span class="em">${svgI("shield")}</span><b>Všech ${D.length} ukázek</b><small>Plný trénink, asi 10 minut</small></button></div>
+  ${L?`<div class="widget"><h3>Vaše poslední výsledky</h3><div class="sg-hist" role="img" aria-label="Procenta správných odpovědí v posledních trénincích">${H.map(r=>{const p=Math.round(r.ok/r.n*100);return `<div style="height:${Math.max(p*.7,6)}px"><span>${p}</span></div>`}).join("")}</div><p class="gnote">Procenta správných odpovědí v posledních trénincích. Výsledky se ukládají jen ve vašem prohlížeči.</p></div>`:""}
+  <p class="gnote">Všechny zprávy jsou smyšlené, firmy ani čísla neexistují.</p>`}
+function quest(){const d=G.q[G.i],a=G.ans[G.i],n=G.q.length,done=G.i+(G.shown?1:0);
+  let h=`<div class="qprog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${done}"><i style="width:${done/n*100}%"></i></div><div class="qbox"><div class="qtop"><span>Ukázka ${G.i+1} z ${n}</span></div>${frame(d,G.shown)}`;
+  if(!G.shown)h+=`<p class="sg-hint">Klepněte na části, které vám přijdou podezřelé. Můžete jich označit víc nebo žádnou.</p><label class="sg-g"><input type="checkbox" id="sgGuess" ${G.guess?"checked":""}> Jen tipuju, nejsem si jistý/á</label><div class="qa two" style="margin-top:14px"><button type="button" class="opt" data-a="dec" data-v="1"><span class="k" aria-hidden="true">!</span><span>Je to podvod</span></button><button type="button" class="opt" data-a="dec" data-v="0"><span class="k" aria-hidden="true">✓</span><span>Je to v pořádku</span></button></div>`;
+  else{const m=d.x?`Označili jste ${a.hit} z ${a.fl} varovných míst${a.fake?`, ${a.fake} označených míst bylo v pořádku`:""}.`:(a.fake?`Označili jste ${a.fake} míst, ale nic podezřelého tam nebylo.`:"V textu opravdu nic podezřelého nebylo.");
+    h+=`<div class="fb ${a.ok?"ok":"bad"}" id="sgv" role="status"><span class="ic" aria-hidden="true">${a.ok?"✓":"✗"}</span><div><b style="font-size:1.15em">${a.ok?"Správně.":"Tentokrát ne."} ${d.x?"Byl to podvod.":"Tohle byla pravá zpráva."}</b><p>${d.why}</p><p style="color:var(--ink2)">${m}</p>${d.x?`<p>${d.tr.map(k=>`<span class="sg-chip">${TR[k][0]}</span>`).join("")}</p>`:""}<p><b>Co udělat:</b> ${d.hab}</p></div></div><div class="qfoot"><button type="button" class="btn pri" data-a="nx">${G.i<n-1?"Další ukázka":"Zobrazit výsledek"}</button></div>`}
+  return h+"</div>"}
+function result(){const A=G.ans,n=A.length,ok=A.filter(x=>x.ok).length,pct=Math.round(ok/n*100),su=A.filter(x=>!x.guess),gu=A.filter(x=>x.guess),sp=su.length?Math.round(su.filter(x=>x.ok).length/su.length*100):null,gp=gu.length?Math.round(gu.filter(x=>x.ok).length/gu.length*100):null;
+  const miss=A.filter((x,k)=>G.q[k].x&&!x.ok).length,fa=A.filter((x,k)=>!G.q[k].x&&!x.ok).length,fl=A.reduce((s,x)=>s+x.fl,0),hit=A.reduce((s,x)=>s+x.hit,0);
+  const mt={};A.forEach((x,k)=>{if(!x.ok&&G.q[k].x)G.q[k].tr.forEach(t=>mt[t]=(mt[t]||0)+1)});const mk=Object.keys(mt).sort((a,b)=>mt[b]-mt[a]);
+  let cal="";if(su.length>=2&&sp!==null&&sp<70)cal="Když jste si byli jistí, uspěli jste jen v "+sp+" % případů. Přehnaná jistota je u podvodů nebezpečná, protože podvodník na ni spoléhá.";
+  else if(su.length&&gu.length&&gp>=sp)cal="Když jste tipovali, trefili jste se stejně často jako při jistotě. Můžete si věřit víc.";
+  else if(su.length)cal="Vaše jistota odpovídá výsledku: když jste si byli jistí, trefili jste se v "+sp+" %.";
+  return `<h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">Výsledek: ${ok} z ${n}</h1>
+  <div class="widget"><h3>Jistota a skutečnost</h3>${bar("Správně celkem",pct)}${sp!==null?bar("Když jistě",sp):""}${gp!==null?bar("Když tipuju",gp):""}${fl?bar("Nalezená varování",Math.round(hit/fl*100)):""}<p>${cal}</p><p style="color:var(--ink2)">${miss?`Přehlédnuté podvody: ${miss}. `:""}${fa?`Pravé zprávy označené za podvod: ${fa}.`:""}${!miss&&!fa?"Žádný podvod jste nepřehlédli ani jste nepodezírali pravou zprávu.":""}</p>
+  <h4>Jak si věříte teď?</h4>${scale("post")}${G.post&&G.pre?`<p style="margin-top:12px">${G.post>G.pre&&pct<70?"Jistota stoupla, ale výsledek zůstává slabší. Zkuste trénink za pár dní znovu.":G.post>G.pre?"Jistota stoupla a výsledek ji podporuje.":G.post<G.pre?"Jistota klesla. U podvodů to bývá zdravá opatrnost.":"Jistota se nezměnila."}</p>`:""}</div>
+  <div class="widget"><h3>${mk.length?"Triky, které vás zaskočily":"Žádný trik vás nezaskočil"}</h3>${mk.length?mk.slice(0,3).map(k=>`<h4>${TR[k][0]} (${mt[k]}×)</h4><p>${TR[k][1]}</p>`).join(""):"<p>Opakování a nové ukázky vám pomohou udržet pozornost.</p>"}</div>
+  <h2 style="margin-top:28px">Tři návyky, které fungují vždy</h2>
+  <div class="rules"><div class="rule"><b>Zastavit.</b><span>Kdo spěchá, tají to nebo chce peníze, ten vyhrává, když neodpovíte hned. Nikdo skutečný nepotřebuje odpověď za pět minut.</span></div><div class="rule"><b>Ověřit jinou cestou.</b><span>Zavěste a zavolejte na číslo, které sami znáte. Nikdy na číslo, které vám volající nadiktuje.</span></div><div class="rule"><b>Rodinné heslo.</b><span>Domluvte se na jednom slově. Kdo o peníze žádá a heslo nezná, není tím, za koho se vydává.</span></div></div>
+  <p style="margin-top:14px">Nikdy nesdílejte kódy z SMS ani neinstalujte aplikace na dálku. Pokud už k něčemu došlo, volejte hned bance a Policii ČR (158).</p>
+  <div class="sg-pc widget"><div class="sg-fam"><b>Naše rodinná karta</b><div class="w" id="sgHw">${esc(G.pw)||"&nbsp;"}</div><p>1. Nespěchám. 2. Zavolám zpět na číslo, které znám. 3. Zeptám se na rodinné heslo.<br>Banka: číslo na zadní straně karty · Policie: 158</p></div></div>
+  <div class="widget"><label for="sgHs"><b>Rodinné heslo pro tištěnou kartu</b></label><input type="text" id="sgHs" maxlength="30" value="${esc(G.pw)}" placeholder="Např. jméno prvního psa, které nikde nezveřejňujeme"><p class="gnote">Heslo se nikam neodesílá. Vytiskněte kartu a dejte ji k telefonu.</p><div class="row-btns" style="justify-content:flex-start"><button type="button" class="btn pri" data-a="print">Vytisknout kartu</button><button type="button" class="btn" data-a="home">Znovu od začátku</button></div></div>
+  <section id="info" style="margin-top:28px"><div class="tabs" role="tablist">${[["ucit","Pro rodinu"],["dukaz","Co funguje, co ne"],["mer","Jak poznáme dopad"]].map(([k,l])=>`<button type="button" role="tab" aria-selected="${G.tab===k}" data-a="tab" data-t="${k}">${l}</button>`).join("")}</div><div class="widget" style="margin-top:0">${tab()}</div></section>`}
+function tab(){
+ if(G.tab==='ucit')return `<h2>Jak to použít s rodiči a prarodiči</h2><p>Sedněte si ke stejné obrazovce. Po každé ukázce se zeptejte: „Co bys udělal(a), kdyby to přišlo doopravdy?“ Poslouchejte víc, než opravujete. Cílem je domluvit rodinné heslo a zvyk zavolat zpátky.</p><p>Nevyčítejte, že někdo naletěl. Stud je hlavní důvod, proč lidé podvod neoznámí. Tlačítka A− a A+ nahoře mění velikost písma.</p>`;
+ if(G.tab==='dukaz')return `<h2>Upřímné hodnocení prototypu</h2><div class="sg-tw"><table><tr><th>Funguje</th><td>Návyky místo „poznej podvod podle detailu“: deepfaky se zlepšují, ověření ne. Označování podezřelých míst nutí číst pozorně. Pravé zprávy brání paranoii. Zvlášť měříme jistotu a správnost, takže vidíme přehnanou sebedůvěru.</td></tr><tr><th>Zatím ne</th><td>Čtrnáct smyšlených ukázek se dá zapamatovat. Chybí skutečné audio a video, jsou jen přepisy a popis. Nevíme, zda se trénink přenese na skutečný hovor pod tlakem. Nic neběželo s reálnými seniory.</td></tr><tr><th>Další krok</th><td>Pilot v knihovnách a klubech seniorů, aktuální scénáře od bank a policie, desítky ukázek generovaných AI a kontrolovaných člověkem, vytištěná verze pro lidi bez internetu.</td></tr></table></div><p class="gnote">Scénáře, texty a aplikaci jsem vytvořil s pomocí AI (Claude). Obsah by před nasazením měli zkontrolovat odborníci na prevenci kriminality.</p>`;
+ return `<h2>Jak poznáme, že to obavu zmírňuje</h2><p>Barometr měří jen sebehodnocení: deepfake pozná 26,4 % lidí, mezi neuživateli AI jen 13,2 %. Samotný růst jistoty by nebyl úspěch.</p><div class="sg-tw"><table><tr><th>Metrika</th><th>Co ukazuje</th></tr><tr><td>Přesnost na nových ukázkách po 2 týdnech</td><td>Naučili se něco, co není zapamatování.</td></tr><tr><td>Rozdíl mezi jistotou a přesností</td><td>Má se zmenšit, ne jen vzrůst jistota.</td></tr><tr><td>Pravé zprávy označené za podvod</td><td>Trénink nevyrobil paranoiu.</td></tr><tr><td>Po 30 dnech: zpětné ověření, rodinné heslo</td><td>Skutečná změna chování.</td></tr></table></div><p>Srovnání vyžaduje kontrolní skupinu s běžným letákem. Měřilo by se anonymně a s informovaným souhlasem.</p>`}
+function render(keep){const y=window.scrollY;
+  root.innerHTML=`<div class="qhead">${G.v!=="home"?'<button type="button" class="btn sm" data-a="home">Zpět na úvod</button>':""}<span style="margin-left:auto;display:flex;gap:6px;align-items:center"><span class="gnote">Písmo</span><button type="button" class="btn sm" data-a="fs" data-d="-0.1" aria-label="Zmenšit písmo">A−</button><button type="button" class="btn sm" data-a="fs" data-d="0.1" aria-label="Zvětšit písmo">A+</button></span></div>`+(G.v==="home"?home():G.v==="q"?quest():result());
+  if(keep)window.scrollTo(0,y);
+  if(G.foc!==null){const el=root.querySelector('[data-a="tg"][data-j="'+G.foc+'"]');el&&el.focus({preventScroll:true});G.foc=null}}
+root.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a;
+  if(a==="start")start(+b.dataset.n);
+  else if(a==="tg"){if(G.shown)return;const j=+b.dataset.j;G.sel.has(j)?G.sel.delete(j):G.sel.add(j);G.foc=j;render(1)}
+  else if(a==="dec")dec(b.dataset.v==="1");
+  else if(a==="nx")nx();
+  else if(a==="sc"){G[b.dataset.k]=+b.dataset.l;render(1)}
+  else if(a==="fs"){G.fs=Math.round(Math.min(1.5,Math.max(.9,G.fs+ +b.dataset.d))*10)/10;root.style.setProperty("--sgf",G.fs)}
+  else if(a==="home"){G.v="home";render();window.scrollTo(0,0)}
+  else if(a==="tab"){G.tab=b.dataset.t;render(1)}
+  else if(a==="print")window.print()});
+root.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches('[data-a="tg"]')){e.preventDefault();e.target.click()}});
+root.addEventListener("change",e=>{if(e.target.id==="sgGuess")G.guess=e.target.checked});
+root.addEventListener("input",e=>{if(e.target.id==="sgHs"){G.pw=e.target.value;const w=$("#sgHw");if(w)w.textContent=G.pw||"\u00a0"}});
+render();
+})();
+
 /* ---------- start ---------- */
 buildMap();updateProgress();drawGlossary("");drawTeacher();iconize(document.body);
 const h=(location.hash||"").replace("#","");
-go(["discover","quiz","teacher"].includes(h)?h:"discover",true);
+go(["discover","quiz","scam","teacher"].includes(h)?h:"discover",true);
 </script>
 </body>
 </html>
